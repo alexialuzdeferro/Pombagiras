@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pombagiras: Guardiãs dos Caminhos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #FFD700;
+            --accent-color: #4A0E4E;
+            --text-color: #333;
+            --light-bg: #FFF8DC;
+            --dark-bg: #2C1810;
+            --gradient-bg: linear-gradient(135deg, #8B0000 0%, #4A0E4E 100%);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(139, 0, 0, 0.7), rgba(74, 14, 78, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23FFF8DC" width="1200" height="600"/><circle fill="%238B0000" opacity="0.1" cx="200" cy="150" r="100"/><circle fill="%23FFD700" opacity="0.1" cx="800" cy="300" r="150"/><circle fill="%234A0E4E" opacity="0.1" cx="1000" cy="100" r="80"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            padding: 50px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            padding: 40px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .section-header p {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Article Cards */
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .article-header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .article-header h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .article-meta {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .article-content {
+            padding: 30px;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .article-content h4 {
+            color: var(--primary-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+
+        .article-content ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: var(--accent-color);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid var(--secondary-color);
+            font-style: italic;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: var(--secondary-color);
+            opacity: 0.5;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            border-left: 5px solid #F39C12;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .warning-box h4 {
+            color: #E67E22;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        /* Social Media Section */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .social-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .social-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .social-icon {
+            font-size: 2.5em;
+            min-width: 60px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+
+        .social-content {
+            flex: 1;
+        }
+
+        .social-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .social-content p {
+            margin: 0 0 8px 0;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .social-handle {
+            font-size: 0.85em;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+        .social-arrow {
+            font-size: 1.2em;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover .social-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Individual social media colors */
+        .instagram::before { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .instagram .social-icon { color: #E4405F; }
+
+        .youtube::before { background: #FF0000; }
+        .youtube .social-icon { color: #FF0000; }
+
+        .facebook::before { background: #1877F2; }
+        .facebook .social-icon { color: #1877F2; }
+
+        .twitter::before { background: #1DA1F2; }
+        .twitter .social-icon { color: #1DA1F2; }
+
+        .tiktok::before { background: linear-gradient(45deg, #ff0050, #00f2ea); }
+        .tiktok .social-icon { color: #000; }
+
+        .linkedin::before { background: #0A66C2; }
+        .linkedin .social-icon { color: #0A66C2; }
+
+        .github::before { background: #333; }
+        .github .social-icon { color: #333; }
+
+        .whatsapp::before { background: #25D366; }
+        .whatsapp .social-icon { color: #25D366; }
+
+        .social-cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .social-cta h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .social-cta p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .hashtag {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .hashtag:hover {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .footer-section p, .footer-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-header h2 {
+                font-size: 2em;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            /* Mobile social media styles */
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .social-card {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .social-icon {
+                font-size: 2em;
+                min-width: 50px;
+            }
+
+            .social-content h3 {
+                font-size: 1.2em;
+            }
+
+            .social-content p {
+                font-size: 0.85em;
+            }
+
+            .social-cta {
+                padding: 30px 20px;
+            }
+
+            .social-cta h3 {
+                font-size: 1.6em;
+            }
+
+            .social-cta p {
+                font-size: 1em;
+            }
+
+            .hashtags {
+                gap: 8px;
+            }
+
+            .hashtag {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles */
+        a:focus, button:focus {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-moon"></i> Pombagiras
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menu de navegação">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#artigos">Artigos</a></li>
+                <li><a href="#linha">Linha</a></li>
+                <li><a href="#respeito">Respeito</a></li>
+                <li><a href="#redes">Redes Sociais</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Pombagiras: Guardiãs dos Caminhos</h1>
+            <p>Um espaço dedicado ao conhecimento respeitoso e responsável sobre essas poderosas entidades da Umbanda e do Candomblé</p>
+            <a href="#sobre" class="cta-button">Conheça Mais</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section" id="sobre">
+            <div class="section-header">
+                <h2>Sobre as Pombagiras</h2>
+                <p>Entidades femininas de grande força e sabedoria, guardiãs dos caminhos e protetoras dos necessitados</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Guardiãs dos Caminhos</h3>
+                    <p>As Pombagiras são conhecidas como guardiãs dos caminhos e encruzilhadas, protegendo aqueles que transitam pelos diversos aspectos da vida. Elas dominam os caminhos do amor, da prosperidade e da proteção.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Força Feminina</h3>
+                    <p>Representam o poder feminino em sua plenitude, a independência, a sensualidade sagrada e a capacidade de transformação. São defensoras dos direitos das mulheres e da igualdade.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Proteção e Justiça</h3>
+                    <p>Oferecem proteção contra energias negativas, injustiças e perseguições. São conhecidas por sua atuação rápida e eficaz na resolução de problemas e na busca pela justiça.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="redes">
+            <div class="section-header">
+                <h2>Conecte-se Conosco</h2>
+                <p>Acompanhe nosso conteúdo e participe da comunidade em nossas redes sociais</p>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://instagram.com/almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card instagram" aria-label="Siga no Instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>Instagram</h3>
+                        <p>Fotos, stories e conteúdo visual sobre as tradições das Pombagiras</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+
+                <a href="https://youtube.com/c/almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card youtube" aria-label="Inscreva-se no YouTube">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>YouTube</h3>
+                        <p>Vídeos educativos, palestras e documentários sobre espiritualidade</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+
+                <a href="https://pinterest.com/almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card pinterest">
+                    <div class="social-icon"><i class="fab fa-pinterest"></i></div>
+                    <div class="social-content">
+                        <h3>Pinterest</h3>
+                        <p>Imagens, inspirações e simbologias das Pombagiras</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+                 <a href="https://tiktok.com/@almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card tiktok" aria-label="Siga no TikTok">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>TikTok</h3>
+                        <p>Conteúdo educativo rápido e desmistificação de preconceitos</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+
+                <a href="https://kwai.com/@almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card kwai">
+                    <div class="social-icon"><i class="fas fa-video"></i></div>
+                    <div class="social-content">
+                        <h3>Kwai</h3>
+                        <p>Vídeos curtos, mensagens e presença espiritual</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+                <a href="https://threads.net/@almasdepombagira" target="_blank" rel="noopener noreferrer" class="social-card threads">
+                    <div class="social-icon"><i class="fas fa-at"></i></div>
+                    <div class="social-content">
+                        <h3>Threads</h3>
+                        <p>Reflexões, frases de impacto e mensagens espirituais</p>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                    <div class="social-arrow"><i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+              </div>
+
+            <div class="social-cta">
+                <h3>📱 Junte-se à Nossa Comunidade</h3>
+                <p>Conecte-se conosco para receber conteúdo exclusivo, participar de discussões respeitosas e ajudar a combater a intolerância religiosa. Juntos, podemos promover conhecimento e respeito pelas tradições afro-brasileiras!</p>
+                
+                <div class="hashtags">
+                    <span class="hashtag">#Pombagiras</span>
+                    <span class="hashtag">#Umbanda</span>
+                    <span class="hashtag">#alexiarosadefogo</span>
+                    <span class="hashtag">#alexialuzdeferro</span>
+                    <span class="hashtag">#almasdepombagira</span>
+                    <span class="hashtag">#CombateAoPreconceito</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="artigos">
+            <div class="section-header">
+                <h2>Artigos e Conhecimento</h2>
+                <p>Aprofunde seus conhecimentos sobre essas entidades sagradas</p>
+            </div>
+
+            <article class="article-card">
+                <div class="article-header">
+                    <h3>A Origem Histórica das Pombagiras</h3>
+                    <div class="article-meta">
+                        <i class="fas fa-calendar"></i> Conhecimento Tradicional
+                    </div>
+                </div>
+                <div class="article-content">
+                    <p>As Pombagiras têm suas raízes profundas na tradição afro-brasileira, sendo entidades que surgiram da fusão de elementos africanos, indígenas e europeus no contexto religioso brasileiro. Sua origem está intimamente ligada aos Exus, sendo consideradas a manifestação feminina desta linha de trabalho espiritual.</p>
+
+                    <h4>Contexto Histórico</h4>
+                    <p>Durante o período colonial e escravocrata, as tradições religiosas africanas foram perseguidas e proibidas. Para preservar suas crenças, os escravizados utilizaram estratégias de sincretismo religioso, associando suas divindades aos santos católicos. Neste contexto, as Pombagiras emergiram como entidades poderosas que não se encaixavam nos padrões morais impostos pela sociedade da época.</p>
+
+                    <h4>Características Principais</h4>
+                    <ul>
+                        <li><strong>Independência:</strong> Representam mulheres que não se submetem às convenções sociais</li>
+                        <li><strong>Proteção:</strong> Defendem especialmente mulheres em situação de vulnerabilidade</li>
+                        <li><strong>Justiça:</strong> Atuam na correção de injustiças e desequilíbrios</li>
+                        <li><strong>Transformação:</strong> Auxiliam em processos de mudança e renovação</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        A Pombagira é a mulher que não se curvou diante das injustiças, que lutou por sua liberdade e hoje auxilia outras mulheres em suas jornadas.
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-header">
+                    <h3>As Diferentes Linhas de Pombagiras</h3>
+                    <div class="article-meta">
+                        <i class="fas fa-calendar"></i> Tradição e Diversidade
+                    </div>
+                </div>
+                <div class="article-content">
+                    <p>Existem diversas linhas e manifestações de Pombagiras, cada uma com suas características específicas, domínios de atuação e formas de trabalho. Compreender essa diversidade é fundamental para o respeito e a adequada abordagem dessas entidades.</p>
+
+                    <h4>Principais Linhas</h4>
+                    <p><strong>Pombagira Maria Padilha:</strong> Uma das mais conhecidas, associada ao amor, à paixão e aos relacionamentos. É invocada para questões do coração e proteção feminina.</p>
+
+                    <p><strong>Pombagira da Calunga:</strong> Ligada aos mistérios da morte e renascimento, atua em transformações profundas e processos de renovação espiritual.</p>
+
+                    <p><strong>Pombagira das Almas:</strong> Trabalha com questões relacionadas aos espíritos desencarnados e proteção contra influências espirituais negativas.</p>
+
+                    <p><strong>Pombagira Cigana:</strong> Conectada à tradição cigana, especializa-se em adivinhação, proteção de viajantes e questões de justiça.</p>
+
+                    <h4>Domínios de Atuação</h4>
+                    <ul>
+                        <li>Proteção contra perseguições e injustiças</li>
+                        <li>Auxílio em questões amorosas e relacionamentos</li>
+                        <li>Abertura de caminhos profissionais</li>
+                        <li>Defesa contra energias negativas</li>
+                        <li>Fortalecimento da autoestima feminina</li>
+                        <li>Justiça em situações de desequilíbrio</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-header">
+                    <h3>Oferendas e Elementos Sagrados</h3>
+                    <div class="article-meta">
+                        <i class="fas fa-gifts"></i> Tradições e Simbologias
+                    </div>
+                </div>
+                <div class="article-content">
+                    <p>As oferendas são uma forma importante de demonstrar respeito e estabelecer conexão com as Pombagiras. Cada elemento possui significado específico e deve ser oferecido com sinceridade e conhecimento adequado.</p>
+
+                    <h4>Elementos Tradicionais</h4>
+                    <p><strong>Rosas Vermelhas:</strong> Símbolo do amor, da paixão e da beleza feminina. Representam a força atrativa e o poder de sedução das Pombagiras.</p>
+
+                    <p><strong>Champanhe ou Sidra:</strong> Bebidas que representam celebração, alegria e prosperidade. São oferecidas em taças de cristal como símbolo de refinamento.</p>
+
+                    <p><strong>Perfumes:</strong> Especialmente os florais e doces, representam a vaidade sagrada e a beleza espiritual. Devem ser de boa qualidade.</p>
+
+                    <p><strong>Velas Vermelhas:</strong> A cor vermelha simboliza a paixão, a força vital e a energia transformadora. As velas iluminam os caminhos.</p>
+
+                    <h4>Locais Apropriados</h4>
+                    <ul>
+                        <li><strong>Encruzilhadas:</strong> Locais de poder onde os caminhos se encontram</li>
+                        <li><strong>Cemitérios:</strong> Especialmente para Pombagiras ligadas à linha das almas</li>
+                        <li><strong>Praias:</strong> Para trabalhos de limpeza e renovação</li>
+                        <li><strong>Jardins:</strong> Espaços naturais de beleza e harmonia</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Responsabilidade Ambiental</h4>
+                        <p>Sempre pratique oferendas de forma consciente e responsável. Evite deixar materiais que possam prejudicar o meio ambiente. Opte por elementos naturais e biodegradáveis sempre que possível.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-header">
+                    <h3>Desmistificando Preconceitos</h3>
+                    <div class="article-meta">
+                        <i class="fas fa-balance-scale"></i> Educação e Esclarecimento
+                    </div>
+                </div>
+                <div class="article-content">
+                    <p>Infelizmente, as Pombagiras são frequentemente alvo de preconceitos e interpretações equivocadas. Este artigo busca esclarecer mitos e promover uma compreensão mais justa e respeitosa.</p>
+
+                    <h4>Mitos vs. Realidade</h4>
+                    <p><strong>Mito:</strong> "Pombagiras são demônios ou entidades malignas"<br>
+                    <strong>Realidade:</strong> São espíritos evoluídos que trabalham pela luz, justiça e evolução espiritual. Sua missão é auxiliar e proteger, especialmente os mais vulneráveis.</p>
+
+                    <p><strong>Mito:</strong> "Trabalham apenas com magia negra"<br>
+                    <strong>Realidade:</strong> Atuam sempre dentro dos princípios de amor, justiça e evolução. Não realizam trabalhos que visem prejudicar inocentes ou causar mal desnecessário.</p>
+
+                    <p><strong>Mito:</strong> "São entidades perigosas e imprevisíveis"<br>
+                    <strong>Realidade:</strong> São entidades sábias e equilibradas, que atuam com precisão e responsabilidade. Sua aparente "dureza" reflete sua determinação em fazer justiça.</p>
+
+                    <h4>Origem dos Preconceitos</h4>
+                    <ul>
+                        <li>Colonização e imposição de valores cristãos europeus</li>
+                        <li>Perseguição às religiões afro-brasileiras</li>
+                        <li>Machismo e medo do poder feminino independente</li>
+                        <li>Falta de conhecimento sobre as tradições africanas</li>
+                        <li>Sensacionalismo midiático e representações distorcidas</li>
+                    </ul>
+
+                    <h4>A Importância da Educação</h4>
+                    <p>Combater esses preconceitos é fundamental para garantir a liberdade religiosa e o respeito à diversidade cultural brasileira. É necessário:</p>
+                    <ul>
+                        <li>Promover o diálogo inter-religioso respeitoso</li>
+                        <li>Educar sobre a rica herança afro-brasileira</li>
+                        <li>Denunciar discriminação e intolerância religiosa</li>
+                        <li>Valorizar a contribuição das tradições africanas para nossa cultura</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        A verdadeira espiritualidade não teme o conhecimento, mas abraça a diversidade e promove o respeito mútuo entre todas as tradições sagradas.
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="section" id="recursos">
+            <div class="section-header">
+                <h2>Recursos Educativos</h2>
+                <p>Materiais complementares para aprofundar seus conhecimentos</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Bibliografia Recomendada</h3>
+                    <p><strong>Livros essenciais:</strong><br>
+                    • "Exu e Pombagira" - José Beniste<br>
+                    • "Umbanda - Do Senzala aos Terreiros" - Diamantino Fernandes Trindade<br>
+                    • "Os Nagôs e a Morte" - Juana Elbein dos Santos<br>
+                    • "O Segredo da Macumba" - Matta e Silva</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Instituições de Ensino</h3>
+                    <p><strong>Centros de estudos:</strong><br>
+                    • Faculdade de Teologia Umbandista<br>
+                    • Instituto Nacional de Tradição e Cultura Afro-Brasileira<br>
+                    • Universidades com cursos de Ciências da Religião<br>
+                    • Terreiros tradicionais com cursos regulares</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Organizações de Apoio</h3>
+                    <p><strong>Entidades importantes:</strong><br>
+                    • ANPTECULT - Associação Nacional de Preservação da Tradição e Cultura<br>
+                    • CCIR - Comissão de Combate à Intolerância Religiosa<br>
+                    • Federações Umbandistas estaduais<br>
+                    • Movimento Negro Unificado</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Direitos e Proteção</h3>
+                    <p><strong>Seus direitos:</strong><br>
+                    • Liberdade religiosa garantida pela Constituição<br>
+                    • Lei nº 11.635/2007 - Dia Nacional de Combate à Intolerância Religiosa<br>
+                    • Disque 100 - Denúncia de discriminação religiosa<br>
+                    • Defensoria Pública especializada</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4><i class="fas fa-info-circle"></i> Como Contribuir</h4>
+                <p>Este é um projeto colaborativo! Você pode contribuir de várias formas:</p>
+                <ul>
+                    <li><strong>Compartilhe conhecimento:</strong> Envie artigos, experiências ou correções</li>
+                    <li><strong>Combata o preconceito:</strong> Divulgue conteúdo educativo em suas redes</li>
+                    <li><strong>Apoie a causa:</strong> Participe de movimentos de combate à intolerância religiosa</li>
+                    <li><strong>Desenvolva:</strong> Se você é programador, contribua melhorando o código no GitHub</li>
+                </ul>
+                <p><strong>GitHub:</strong> github.com/usuario/pombagiras-blog (substitua pela sua URL)</p>
+            </div>
+        </section>
+
+        <section class="section" id="linha">
+            <div class="section-header">
+                <h2>A Linha das Pombagiras</h2>
+                <p>Compreendendo o trabalho espiritual dessas entidades</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Trabalhos do Amor</h3>
+                    <p>As Pombagiras são frequentemente procuradas para questões relacionadas ao amor e relacionamentos. Elas auxiliam na conquista, na reconciliação, na proteção contra rivais e na abertura do coração para novas possibilidades amorosas.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Prosperidade</h3>
+                    <p>Atuam na abertura de caminhos profissionais, no crescimento dos negócios e na prosperidade financeira. São especialmente procuradas por mulheres empreendedoras e profissionais autônomas.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Justiça</h3>
+                    <p>Quando há injustiças, perseguições ou desequilíbrios, as Pombagiras atuam para restabelecer a harmonia e garantir que a justiça seja feita, especialmente em defesa dos mais vulneráveis.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Importante</h4>
+                <p>Todo trabalho com Pombagiras deve ser realizado com respeito, ética e responsabilidade. Nunca devem ser utilizadas para causar mal a terceiros ou para fins egoístas que prejudiquem outras pessoas. O verdadeiro trabalho espiritual visa sempre o bem, a justiça e a evolução.</p>
+            </div>
+        </section>
+
+        <section class="section" id="respeito">
+            <div class="section-header">
+                <h2>Respeito e Responsabilidade</h2>
+                <p>Diretrizes para uma abordagem ética e respeitosa</p>
+            </div>
+
+            <article class="article-card">
+                <div class="article-header">
+                    <h3>Princípios Fundamentais</h3>
+                    <div class="article-meta">
+                        <i class="fas fa-heart"></i> Ética e Responsabilidade
+                    </div>
+                </div>
+                <div class="article-content">
+                    <h4>Respeito pela Tradição</h4>
+                    <p>As Pombagiras são parte de uma rica tradição religiosa afro-brasileira que deve ser respeitada e preservada. É fundamental compreender que essas entidades não são "demônios" ou entidades "malignas", mas sim espíritos evoluídos que trabalham pela luz e pela justiça.</p>
+
+                    <h4>Desmistificando Preconceitos</h4>
+                    <p>Infelizmente, as Pombagiras são frequentemente mal compreendidas devido a preconceitos religiosos e sociais. É importante esclarecer que:</p>
+                    <ul>
+                        <li>Não são entidades "diabólicas" ou "negativas"</li>
+                        <li>Trabalham sempre pela luz e pela evolução espiritual</li>
+                        <li>Representam o empoderamento feminino e a luta contra a opressão</li>
+                        <li>Merecem o mesmo respeito dedicado a qualquer entidade espiritual</li>
+                    </ul>
+
+                    <h4>Responsabilidade Espiritual</h4>
+                    <p>Ao trabalhar com Pombagiras, é essencial:</p>
+                    <ul>
+                        <li>Manter sempre intenções puras e éticas</li>
+                        <li>Nunca solicitar trabalhos para prejudicar terceiros</li>
+                        <li>Respeitar os preceitos e fundamentos da tradição</li>
+                        <li>Buscar orientação de pessoas experientes e confiáveis</li>
+                        <li>Compreender que todo trabalho espiritual tem consequências</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        O verdadeiro poder espiritual não está em dominar ou prejudicar outros, mas em elevar-se e contribuir para a evolução de todos.
+                    </div>
+
+                    <h4>Combatendo o Preconceito</h4>
+                    <p>É nosso dever como praticantes e estudiosos da espiritualidade afro-brasileira combater os preconceitos e a discriminação religiosa. As Pombagiras, assim como todas as entidades da Umbanda e do Candomblé, merecem respeito e reconhecimento por sua importância histórica e espiritual.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Este Blog</h3>
+                    <p>Este espaço foi criado com o objetivo de divulgar conhecimento respeitoso e responsável sobre as Pombagiras, combatendo preconceitos e promovendo o entendimento adequado dessas importantes entidades espirituais.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Recursos Importantes</h3>
+                    <ul>
+                        <li><a href="#artigos">Artigos Educativos</a></li>
+                        <li><a href="#linha">Linha das Pombagiras</a></li>
+                        <li><a href="#respeito">Ética e Responsabilidade</a></li>
+                        <li>Combate ao Preconceito Religioso</li>
+                        <li>Tradições Afro-Brasileiras</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Responsabilidade</h3>
+                    <p>Todo o conteúdo deste site é apresentado com fins educativos e de combate ao preconceito religioso. Sempre procure orientação de pessoas experientes e casas de tradição estabelecida para práticas espirituais.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Respeito às Tradições</h3>
+                    <p>Honramos e respeitamos todas as tradições espirituais afro-brasileiras, seus praticantes, terreiros e casas de tradição. Este trabalho é um tributo à rica herança cultural e espiritual do nosso povo.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pombagiras: Guardiãs dos Caminhos. Criado com respeito e responsabilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards and articles
+        document.querySelectorAll('.card, .article-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.focus();
+            }
