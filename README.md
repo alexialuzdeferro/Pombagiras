@@ -47,3 +47,8 @@ git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
 cd SEU_REPOSITORIO
 
 # Abra o index.html no navegador
+
+✨ Créditos
+
+Criado por Alexia Tsan (@alexiarosadefogo | @alexialuzdeferro).
+Com amor, respeito e responsabilidade às minhas Mães Espirituais, as Pombagiras.
