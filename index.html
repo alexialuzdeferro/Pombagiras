@@ -1078,42 +1078,9 @@
         </section>
     </main>
 
-<!-- Contador místico responsivo Pombagiras -->
-<div style="text-align:center; margin-top:20px; font-family:'Cinzel', serif; font-size:clamp(16px, 2vw, 22px); color:#8A2BE2; text-shadow: 2px 2px 5px rgba(0,0,0,0.7), 0 0 10px rgba(138,43,226,0.6); position:relative;">
-  🌹 Visitas: 
-  <span id="contador"></span>
-  <div style="
-    position:absolute; 
-    top:-10px; left:50%; 
-    width:60px; height:40px; 
-    background: radial-gradient(circle, rgba(138,43,226,0.2), transparent 70%); 
-    transform: translateX(-50%); 
-    filter: blur(8px); 
-    border-radius:50%;
-    pointer-events:none;
-  "></div>
-</div>
-
-<script>
-// URL do contador do FreeCounter (substitua pelo seu código)
-const urlContador = 'https://counter6.stat.ovh/private/freecounterstat.php?c=6r7m6mew54ymya3t0bmn65tghc2w8h1a&json';
-
-// Busca o número de visitas e atualiza o contador
-fetch(urlContador)
-  .then(response => response.text())
-  .then(data => {
-    const visitas = data.match(/"visits":(\d+)/)[1];
-    document.getElementById('contador').textContent = visitas;
-  })
-  .catch(err => {
-    console.log('Erro ao buscar contador:', err);
-    document.getElementById('contador').textContent = '0';
-  });
-</script>
-
 <!-- Formulário responsivo Pombagiras -->
 <div style="text-align:center; margin-top:20px; font-family:'Cinzel', serif; color:#8A2BE2;">
-  🌹 Deixe seu recado
+  🌹 DEIXE SEU RECADO - GRATIDÃO 🌹
 </div>
 
 <form action="https://formspree.io/f/mrbawqvo" method="POST" style="text-align:center; margin-top:10px; max-width:500px; margin-left:auto; margin-right:auto;">
