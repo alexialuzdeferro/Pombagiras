@@ -1078,32 +1078,38 @@
         </section>
     </main>
 
-    <!-- Formulário de recado Pombagiras -->
+ <!-- Formulário responsivo Pombagiras -->
 <div style="text-align:center; margin-top:20px; font-family:'Cinzel', serif; color:#8A2BE2;">
   🌹 Deixe seu recado
 </div>
 
-<form action="https://formspree.io/f/mrbawqvo" method="POST" style="text-align:center; margin-top:10px;">
+<form action="https://formspree.io/f/mrbawqvo" method="POST" style="text-align:center; margin-top:10px; max-width:400px; margin-left:auto; margin-right:auto;">
   <input type="text" name="name" placeholder="Seu nome" required
-    style="padding:8px; border-radius:5px; border:1px solid #B22222; margin-bottom:5px;">
+    style="width:100%; padding:10px; border-radius:5px; border:1px solid #B22222; margin-bottom:10px; box-sizing:border-box;">
   <br>
   <input type="email" name="email" placeholder="Seu e-mail" required
-    style="padding:8px; border-radius:5px; border:1px solid #B22222; margin-bottom:5px;">
+    style="width:100%; padding:10px; border-radius:5px; border:1px solid #B22222; margin-bottom:10px; box-sizing:border-box;">
   <br>
   <textarea name="message" placeholder="Seu recado" required
-    style="padding:8px; border-radius:5px; border:1px solid #B22222; width:250px; height:100px;"></textarea>
+    style="width:100%; padding:10px; border-radius:5px; border:1px solid #B22222; margin-bottom:10px; box-sizing:border-box; height:120px;"></textarea>
   <br>
   <button type="submit" style="
-    padding:8px 15px; 
+    width:100%;
+    padding:12px 0; 
     border:none; 
     border-radius:50px; 
     background: linear-gradient(45deg,#8A2BE2,#B22222);
     color:#fff; 
     font-family:'Cinzel', serif;
+    font-size:16px;
     cursor:pointer;
-    margin-top:5px;
-  ">Enviar</button>
+    transition: transform 0.2s, box-shadow 0.2s;
+  " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 15px rgba(0,0,0,0.6)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+    Enviar
+  </button>
 </form>
+
 
   <footer id="contato">
         <div class="container">
