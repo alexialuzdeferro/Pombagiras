@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pombagiras: Guardiãs dos Caminhos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,7 +14,6 @@
 
         /* --- DEFINIÇÃO DE TEMAS --- */
         :root {
-            /* Variáveis Padrão (serão sobrescritas pelos temas) */
             --transition-speed: 0.5s;
         }
 
@@ -30,6 +29,7 @@
             --gradient-header: linear-gradient(135deg, #8B0000 0%, #4A0E4E 100%);
             --hero-overlay: linear-gradient(rgba(139, 0, 0, 0.7), rgba(74, 14, 78, 0.7));
             --shadow-color: rgba(0,0,0,0.3);
+            --border-highlight: #8B0000;
         }
 
         /* TEMA: Modo Dia (Claro e Limpo) */
@@ -44,6 +44,7 @@
             --gradient-header: linear-gradient(135deg, #b30000 0%, #333 100%);
             --hero-overlay: linear-gradient(rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8));
             --shadow-color: rgba(0,0,0,0.1);
+            --border-highlight: #ccc;
         }
 
         /* TEMA: Modo Noite (Escuro e Confortável) */
@@ -58,6 +59,7 @@
             --gradient-header: linear-gradient(135deg, #1f1f1f 0%, #000 100%);
             --hero-overlay: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
             --shadow-color: rgba(0,0,0,0.5);
+            --border-highlight: #333;
         }
 
         body {
@@ -68,7 +70,6 @@
             transition: background var(--transition-speed), color var(--transition-speed);
         }
 
-        /* Ajuste específico para o texto do Hero no modo Dia */
         [data-theme="day"] .hero h1, 
         [data-theme="day"] .hero p {
             color: #333;
@@ -185,20 +186,10 @@
         }
 
         /* Main Content */
-        main {
-            padding: 50px 0;
-        }
-
-        .section {
-            margin-bottom: 80px;
-            padding: 40px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
+        main { padding: 50px 0; }
+        .section { margin-bottom: 80px; padding: 40px 0; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        
         .section-header h2 {
             font-size: 2.5em;
             color: var(--primary-color);
@@ -225,7 +216,7 @@
             margin: 0 auto;
         }
 
-        /* Cards Grid */
+        /* Cards General */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -242,65 +233,121 @@
             border-top: 5px solid var(--primary-color);
             color: var(--text-color);
         }
+        
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px var(--shadow-color); }
+        .card-icon { font-size: 3em; color: var(--primary-color); margin-bottom: 20px; text-align: center; }
+        .card h3 { font-size: 1.5em; color: var(--primary-color); margin-bottom: 15px; text-align: center; }
+        .card p { line-height: 1.8; text-align: justify; opacity: 0.9; }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow-color);
+        /* ENTITY CARDS (As 12 Guardiãs) */
+        .entity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        .card-icon {
-            font-size: 3em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
+        .entity-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .entity-card:hover {
+            transform: scale(1.02);
+            border-color: var(--secondary-color);
+        }
+
+        .entity-header {
+            background: var(--gradient-header);
+            color: white;
+            padding: 15px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .card h3 {
-            font-size: 1.5em;
+        .entity-header i { font-size: 1.2em; color: var(--secondary-color); }
+        .entity-header h4 { font-size: 1.1em; margin: 0; }
+
+        .entity-body { padding: 20px; color: var(--text-color); }
+        
+        .entity-archetype {
+            font-weight: bold;
             color: var(--primary-color);
+            text-align: center;
             margin-bottom: 15px;
-            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-highlight);
+            padding-bottom: 10px;
         }
 
-        .card p {
-            line-height: 1.8;
-            text-align: justify;
-            opacity: 0.9;
+        .entity-details { list-style: none; font-size: 0.9em; }
+        .entity-details li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+        .entity-details strong { color: var(--accent-color); min-width: 70px; }
+        [data-theme="night"] .entity-details strong { color: var(--secondary-color); }
+
+        /* Social Media Section */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
-        /* Article Cards */
+        .social-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card:hover { transform: translateY(-5px); }
+        .social-icon { font-size: 2em; min-width: 50px; text-align: center; }
+        .social-content h3 { font-size: 1.1em; margin-bottom: 2px; }
+        .social-handle { font-size: 0.8em; opacity: 0.7; }
+
+        /* Social Brand Colors */
+        .instagram .social-icon { color: #E4405F; }
+        .youtube .social-icon { color: #FF0000; }
+        .tiktok .social-icon { color: #000; }
+        [data-theme="night"] .tiktok .social-icon { color: #fff; }
+        .kwai .social-icon { color: #ff8c00; }
+        .threads .social-icon { color: #000; }
+        [data-theme="night"] .threads .social-icon { color: #fff; }
+        
+        /* New Social Colors */
+        .whatsapp .social-icon { color: #25D366; }
+        .telegram .social-icon { color: #0088cc; }
+        .discord .social-icon { color: #5865F2; }
+        .pinterest .social-icon { color: #bd081c; }
+
+        /* Article/Quote Styles */
         .article-card {
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px var(--shadow-color);
-            transition: all 0.3s ease;
             margin-bottom: 30px;
             color: var(--text-color);
         }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .article-header {
-            background: var(--gradient-header);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .article-content {
-            padding: 30px;
-        }
-
-        .article-content h4 {
-            color: var(--primary-color);
-            margin: 25px 0 15px 0;
-            font-size: 1.3em;
-        }
-
-        /* Quote Box */
+        .article-header { background: var(--gradient-header); color: white; padding: 20px; text-align: center; }
+        .article-content { padding: 30px; }
         .quote-box {
             background: var(--accent-color);
             color: white;
@@ -310,20 +357,7 @@
             border-left: 5px solid var(--secondary-color);
             font-style: italic;
             text-align: center;
-            position: relative;
         }
-
-        .quote-box::before {
-            content: '"';
-            font-size: 4em;
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            color: var(--secondary-color);
-            opacity: 0.5;
-        }
-
-        /* Warning Box */
         .warning-box {
             background: rgba(255, 243, 205, 0.1);
             border: 1px solid var(--secondary-color);
@@ -334,128 +368,39 @@
             color: var(--text-color);
         }
 
-        .warning-box h4 {
-            color: #E67E22;
-            margin-bottom: 10px;
-        }
-
-        /* Footer */
+        /* Footer & Theme Switcher */
         footer {
             background: var(--dark-bg);
             color: white;
             padding: 50px 0 20px;
             margin-top: 80px;
-            transition: background var(--transition-speed);
         }
-        
-        /* Visitor Counter Style */
-        .visitor-counter {
-            text-align: center;
-            font-size: 0.85em;
-            color: var(--secondary-color);
-            margin-top: 15px;
-            opacity: 0.8;
-            border-top: 1px solid #555;
-            padding-top: 10px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Social Media Section */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .social-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Theme Switcher Widget */
-        .theme-switcher {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--card-bg);
-            padding: 10px;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            display: flex;
-            gap: 10px;
-            z-index: 2000;
-            border: 1px solid var(--secondary-color);
-        }
-
-        .theme-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2em;
-            padding: 5px 10px;
-            border-radius: 50%;
-            transition: transform 0.2s;
-            opacity: 0.6;
-        }
-
-        .theme-btn:hover, .theme-btn.active {
-            opacity: 1;
-            transform: scale(1.2);
-            background: rgba(0,0,0,0.1);
-        }
-        
-        [data-theme="night"] .theme-btn:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        /* Social Icons & Colors */
-        .social-icon { font-size: 2.5em; min-width: 60px; text-align: center; }
-        .social-card:hover { transform: translateY(-5px); }
-        .instagram .social-icon { color: #E4405F; }
-        .youtube .social-icon { color: #FF0000; }
-        .facebook .social-icon { color: #1877F2; }
-        .twitter .social-icon { color: #1DA1F2; }
-        .tiktok .social-icon { color: #000; }
-        [data-theme="night"] .tiktok .social-icon { color: #fff; }
-        .linkedin .social-icon { color: #0A66C2; }
-        .whatsapp .social-icon { color: #25D366; }
-        .kwai .social-icon { color: #ff8c00; }
-        .threads .social-icon { color: #000; }
-        [data-theme="night"] .threads .social-icon { color: #fff; }
-
-        .social-cta {
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 40px;
-        }
-        
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 30px;
         }
-
         .footer-section h3 { color: var(--secondary-color); margin-bottom: 20px; }
         .footer-section a { color: #ccc; text-decoration: none; }
-        .footer-section a:hover { color: var(--secondary-color); }
         .footer-bottom { border-top: 1px solid #555; padding-top: 20px; text-align: center; color: #ccc; }
+        .visitor-counter {
+            text-align: center; font-size: 0.85em; color: var(--secondary-color);
+            margin-top: 15px; opacity: 0.8; border-top: 1px solid #555;
+            padding-top: 10px; width: fit-content; margin: 0 auto;
+        }
+
+        .theme-switcher {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--card-bg); padding: 10px; border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; gap: 10px;
+            z-index: 2000; border: 1px solid var(--secondary-color);
+        }
+        .theme-btn {
+            background: none; border: none; cursor: pointer;
+            font-size: 1.2em; padding: 5px 10px; border-radius: 50%; opacity: 0.6;
+        }
+        .theme-btn.active { opacity: 1; transform: scale(1.2); }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -535,10 +480,34 @@
         <section class="section" id="redes">
             <div class="section-header">
                 <h2>Conecte-se Conosco</h2>
-                <p>Acompanhe nosso conteúdo em todas as plataformas</p>
+                <p>Junte-se a nossa comunidade em todas as plataformas</p>
             </div>
 
             <div class="social-grid">
+                <a href="https://whatsapp.com/channel/0029VbBs2AnJkK7J9J0nLr2G" target="_blank" class="social-card whatsapp">
+                    <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="social-content">
+                        <h3>Canal WhatsApp</h3>
+                        <span class="social-handle">Acesse Agora</span>
+                    </div>
+                </a>
+
+                <a href="https://t.me/pomba_giras" target="_blank" class="social-card telegram">
+                    <div class="social-icon"><i class="fab fa-telegram"></i></div>
+                    <div class="social-content">
+                        <h3>Canal Telegram</h3>
+                        <span class="social-handle">@pomba_giras</span>
+                    </div>
+                </a>
+
+                <a href="https://discord.gg/gWZP8R7Dqu" target="_blank" class="social-card discord">
+                    <div class="social-icon"><i class="fab fa-discord"></i></div>
+                    <div class="social-content">
+                        <h3>Servidor Discord</h3>
+                        <span class="social-handle">Comunidade</span>
+                    </div>
+                </a>
+
                 <a href="https://instagram.com/almasdepombagira" target="_blank" class="social-card instagram">
                     <div class="social-icon"><i class="fab fa-instagram"></i></div>
                     <div class="social-content">
@@ -546,6 +515,7 @@
                         <span class="social-handle">@almasdepombagira</span>
                     </div>
                 </a>
+
                 <a href="https://youtube.com/@almasdepombagira" target="_blank" class="social-card youtube">
                     <div class="social-icon"><i class="fab fa-youtube"></i></div>
                     <div class="social-content">
@@ -553,6 +523,15 @@
                         <span class="social-handle">@almasdepombagira</span>
                     </div>
                 </a>
+
+                <a href="https://br.pinterest.com/almasdepombagira/" target="_blank" class="social-card pinterest">
+                    <div class="social-icon"><i class="fab fa-pinterest"></i></div>
+                    <div class="social-content">
+                        <h3>Pinterest</h3>
+                        <span class="social-handle">@almasdepombagira</span>
+                    </div>
+                </a>
+
                 <a href="https://tiktok.com/@almasdepombagira" target="_blank" class="social-card tiktok">
                     <div class="social-icon"><i class="fab fa-tiktok"></i></div>
                     <div class="social-content">
@@ -560,6 +539,7 @@
                         <span class="social-handle">@almasdepombagira</span>
                     </div>
                 </a>
+
                  <a href="https://kwai.com/@AlmasdePombagira" target="_blank" class="social-card kwai">
                     <div class="social-icon"><i class="fas fa-video"></i></div>
                     <div class="social-content">
@@ -567,6 +547,7 @@
                         <span class="social-handle">@AlmasdePombagira</span>
                     </div>
                 </a>
+
                  <a href="https://threads.net/@almasdepombagira" target="_blank" class="social-card threads">
                     <div class="social-icon"><i class="fas fa-at"></i></div>
                     <div class="social-content">
@@ -581,17 +562,200 @@
             <div class="section-header">
                 <h2>Artigos e Conhecimento</h2>
             </div>
+            
             <article class="article-card">
                 <div class="article-header">
                     <h3>A Origem Histórica das Pombagiras</h3>
                 </div>
                 <div class="article-content">
                     <p>As Pombagiras têm suas raízes profundas na tradição afro-brasileira. Sua origem está intimamente ligada aos Exus, sendo consideradas a manifestação feminina desta linha de trabalho espiritual.</p>
-                    <div class="quote-box">
-                        A Pombagira é a mulher que não se curvou diante das injustiças, que lutou por sua liberdade.
-                    </div>
                 </div>
             </article>
+
+            <h3 style="text-align:center; color:var(--primary-color); margin-top:50px; font-size:2em;">As 12 Guardiãs Principais</h3>
+            <p style="text-align:center; margin-bottom:30px; opacity:0.8;">Resumo de arquétipos, simbologias e atribuições</p>
+            
+            <div class="entity-grid">
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-crown"></i> <h4>Maria Padilha</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Comando / Realeza</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Vermelho, Preto e Dourado</li>
+                            <li><strong>Dia:</strong> Segunda-feira</li>
+                            <li><strong>Ítens:</strong> Tridente, Rosas Vermelhas, Taça, Cigarro</li>
+                            <li><strong>Símbolo:</strong> A Rainha, o poder de decisão e magnetismo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-broom"></i> <h4>Maria Mulambo</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Cura / Humildade</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Roxo, Preto e Dourado</li>
+                            <li><strong>Dia:</strong> Segunda-feira</li>
+                            <li><strong>Ítens:</strong> Vassoura (simbólica), Flores, Xale</li>
+                            <li><strong>Símbolo:</strong> Acolhimento, cura emocional, transformação do lixo em luxo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-khanda"></i> <h4>Maria Quitéria</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Guerra / Proteção</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Vermelho e Verde (ou Militar)</li>
+                            <li><strong>Dia:</strong> Terça-feira (vibração de Ogum)</li>
+                            <li><strong>Ítens:</strong> Espada, Punhal, Escudo</li>
+                            <li><strong>Símbolo:</strong> Coragem, disciplina, defesa dos injustiçados.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-skull"></i> <h4>Rosa Caveira</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Justiça / Morte</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Preto, Vermelho e Amarelo</li>
+                            <li><strong>Dia:</strong> Segunda-feira (Almas)</li>
+                            <li><strong>Ítens:</strong> Caveira, Rosas Amarelas, Punhal</li>
+                            <li><strong>Símbolo:</strong> Guardiã dos cemitérios, ceifadora de ilusões, lealdade.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-moon"></i> <h4>Dama da Noite</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Mistério / Oculto</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Preto e Azul Meia-Noite</li>
+                            <li><strong>Dia:</strong> Segunda-feira</li>
+                            <li><strong>Ítens:</strong> Lua, Estrelas, Véus, Incensos</li>
+                            <li><strong>Símbolo:</strong> O desconhecido, intuição profunda, feitiçaria.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-music"></i> <h4>Sete Saias</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Alegria / Intensidade</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> 7 Cores ou Vermelho/Preto</li>
+                            <li><strong>Dia:</strong> Sexta-feira</li>
+                            <li><strong>Ítens:</strong> Fitas coloridas, Pandeiro, Cartas</li>
+                            <li><strong>Símbolo:</strong> Movimento, sedução, caminhos abertos no amor.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-coins"></i> <h4>Pombagira Cigana</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Liberdade / Prosperidade</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Colorido, Dourado, Vermelho</li>
+                            <li><strong>Dia:</strong> Quinta-feira ou Sábado</li>
+                            <li><strong>Ítens:</strong> Baralho, Cristais, Moedas, Leque</li>
+                            <li><strong>Símbolo:</strong> Vidência, fartura, alegria de viver, andarilho.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-hat-cowboy-side"></i> <h4>Maria Navalha</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Malandragem / Rua</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Vermelho e Branco (ou listrado)</li>
+                            <li><strong>Dia:</strong> Segunda-feira (Linha de Malandros)</li>
+                            <li><strong>Ítens:</strong> Navalha, Chapéu, Dados, Cerveja</li>
+                            <li><strong>Símbolo:</strong> Esperteza, jogo de cintura, proteção nas ruas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-water"></i> <h4>Da Praia</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Emoção / Limpeza (Água)</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Azul Escuro, Prata, Champanhe</li>
+                            <li><strong>Dia:</strong> Sábado (Vibração de Iemanjá)</li>
+                            <li><strong>Ítens:</strong> Conchas, Espelho, Areia, Rosas Brancas</li>
+                            <li><strong>Símbolo:</strong> Purificação, sensualidade fluida, mistérios do mar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-tshirt"></i> <h4>Maria Farrapo</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Sanidade / Caos (Mental)</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Roxo e Preto (Trapos simbólicos)</li>
+                            <li><strong>Dia:</strong> Segunda-feira</li>
+                            <li><strong>Ítens:</strong> Retalhos, Agulhas, Ervas secas</li>
+                            <li><strong>Símbolo:</strong> Reorganização mental, magia antiga, descarrego pesado.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-child"></i> <h4>Pombagira Menina</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Renovação / Inocência</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Rosa, Vermelho e Dourado</li>
+                            <li><strong>Dia:</strong> Sexta-feira</li>
+                            <li><strong>Ítens:</strong> Doces finos, Fitas, Bonecas (simbólico)</li>
+                            <li><strong>Símbolo:</strong> Pureza na intenção, renovação, quebra de demandas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="entity-card">
+                    <div class="entity-header">
+                        <i class="fas fa-tree"></i> <h4>Da Figueira</h4>
+                    </div>
+                    <div class="entity-body">
+                        <div class="entity-archetype">Raiz / Ancestralidade</div>
+                        <ul class="entity-details">
+                            <li><strong>Cores:</strong> Verde Escuro, Marrom e Vermelho</li>
+                            <li><strong>Dia:</strong> Segunda-feira</li>
+                            <li><strong>Ítens:</strong> Folhas de figueira, Terra, Raízes</li>
+                            <li><strong>Símbolo:</strong> Conexão com a terra, fertilidade, sabedoria ancestral.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="section" id="linha">
@@ -621,6 +785,9 @@
             <article class="article-card">
                 <div class="article-content">
                     <p>As Pombagiras não são entidades "diabólicas", mas sim espíritos que trabalham pela lei e evolução. É fundamental combater a intolerância religiosa através do conhecimento.</p>
+                    <div class="quote-box">
+                        O verdadeiro poder espiritual não está em dominar, mas em evoluir.
+                    </div>
                 </div>
             </article>
         </section>
@@ -662,56 +829,33 @@
         // --- LÓGICA DO TEMA ---
         function setTheme(themeName) {
             document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('theme', themeName);
             
-            // Atualizar botões
             document.querySelectorAll('.theme-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.currentTarget.classList.add('active'); // O botão clicado fica ativo
-            
-            // Salvar preferência
-            localStorage.setItem('theme', themeName);
+            event.currentTarget.classList.add('active');
         }
 
-        // Carregar tema salvo ou usar o vibrante por padrão
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'vibrant';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            
-            // Ativar o botão correto visualmente
             const activeBtn = document.querySelector(`.theme-btn[onclick="setTheme('${savedTheme}')"]`);
             if(activeBtn) activeBtn.classList.add('active');
             else document.querySelector('.theme-btn:last-child').classList.add('active');
         })();
 
-
-        // --- LÓGICA DO CONTADOR DE VISITAS (Simulação Persistente) ---
-        // Como não temos banco de dados, usamos localStorage para simular um contador
-        // que "parece" geral (inicia alto) e conta as visitas deste navegador.
+        // --- CONTADOR DE VISITAS ---
         (function() {
-            // Número base "fake" para parecer que o site já tem muitos acessos
             const baseCount = 28530; 
-            
-            // Tenta pegar o contador local
-            let localVisits = localStorage.getItem('site_visits');
-            
-            if (!localVisits) {
-                localVisits = 0;
-            }
-            
-            // Incrementa visita atual
+            let localVisits = localStorage.getItem('site_visits') || 0;
             localVisits = parseInt(localVisits) + 1;
             localStorage.setItem('site_visits', localVisits);
-            
-            // O número exibido é a soma da base (para parecer popular) + visitas locais
             const displayCount = baseCount + localVisits;
-            
-            // Formatar número (ex: 28.531)
             document.getElementById('counter-value').innerText = displayCount.toLocaleString('pt-BR');
         })();
 
-
-        // --- MENU MOBILE & SCROLL ---
+        // --- MENU MOBILE ---
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
 
@@ -739,7 +883,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.card, .article-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.card, .article-card, .entity-card').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
